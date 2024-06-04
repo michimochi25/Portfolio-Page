@@ -6,10 +6,19 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['"Karla"'],
+        'sans': ['"Pixelify Sans"'],
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-typewriter')({
+      wordsets: {
+        welcome: {
+          words: ['Hodwy! Welcome to my page...'],
+          eraseSpeed: 0
+        }
+      }
+    })
+  ],
 }
 
