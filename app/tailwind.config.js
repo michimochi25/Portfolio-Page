@@ -8,13 +8,16 @@ module.exports = {
       fontFamily: {
         'sans': ['"Pixelify Sans"'],
       },
+      scale: {
+        '200': '2',
+      }
     },
   },
   plugins: [
     require('tailwind-typewriter')({
       wordsets: {
         welcome: {
-          words: ['Hodwy! Welcome to my page...'],
+          words: ['Howdy! Welcome to my page...'],
           repeat: 0,
           eraseSpeed: 0
         }
