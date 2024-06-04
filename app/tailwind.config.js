@@ -15,6 +15,7 @@ module.exports = {
       wordsets: {
         welcome: {
           words: ['Hodwy! Welcome to my page...'],
+          repeat: 0,
           eraseSpeed: 0
         }
       }
