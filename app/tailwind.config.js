@@ -10,7 +10,7 @@ module.exports = {
       },
       scale: {
         '200': '2',
-      }
+      },
     },
   },
   plugins: [
