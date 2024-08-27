@@ -6,7 +6,12 @@ export default {
   ],
   theme: {
     extend: {},
+    fontSize: {
+      xxs: ['12px', '16px']
+    }
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-animated')
+  ],
 }
 

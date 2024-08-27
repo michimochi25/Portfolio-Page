@@ -9,37 +9,26 @@ html {
   color: #0f1020;
   font-family: 'Inter';
   font-size: 30px;
+  overflow: hidden;
 }
 
 html,
 body,
 #root {
   height: 100%;
+  overflow: hidden;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+#hide-scrollbar {
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+#hide-scrollbar::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
 }
 
 @media (prefers-reduced-motion: no-preference) {

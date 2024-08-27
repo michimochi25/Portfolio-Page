@@ -7,17 +7,18 @@ function App() {
   const projects = 1;
   const posts = 2;
   const resources = 3;
+  const socials = 4;
 
   const [currPage, setCurrPage] = useState(aboutMe);
 
   return (
-    <div className='bg-[#FAA6FF] w-screen h-screen grid grid-cols-3 divide-x divide-[#0f1020] justify-center p-5
-      content-center'>
-      <div id='menu' className='grid grid-rows-4 p-5 text-right h-32 content-center items-center '>
+    <div className='bg-[#FAA6FF] flex flex-row w-screen h-screen justify-center p-5
+      content-center items-center'>
+      <div id='menu' className='absolute left-0 h-full p-5 text-right bg-[#2F195F] text-[#EFC3F5] min-w-32'>
         <p className={
           currPage === aboutMe
-            ? 'font-bold cursor-pointer hover:text-2xl transition-all duration-500'
-            : 'cursor-pointer hover:text-2xl transition-all duration-500'
+            ? 'font-bold cursor-pointer hover:scale-110 transition-all duration-500'
+            : 'cursor-pointer hover:scale-110 transition-all duration-500'
         }
           onClick={() => setCurrPage(aboutMe)}
         >
@@ -25,8 +26,8 @@ function App() {
         </p>
         <p className={
           currPage === projects
-            ? 'font-bold cursor-pointer hover:text-2xl transition-all duration-500'
-            : 'cursor-pointer hover:text-2xl transition-all duration-500'
+            ? 'font-bold cursor-pointer hover:scale-110 transition-all duration-500'
+            : 'cursor-pointer hover:scale-110 transition-all duration-500'
         }
           onClick={() => setCurrPage(projects)}
         >
@@ -34,8 +35,8 @@ function App() {
         </p>
         <p className={
           currPage === posts
-            ? 'font-bold cursor-pointer hover:text-2xl transition-all duration-500'
-            : 'cursor-pointer hover:text-2xl transition-all duration-500'
+            ? 'font-bold cursor-pointer hover:scale-110 transition-all duration-500'
+            : 'cursor-pointer hover:scale-110 transition-all duration-500'
         }
           onClick={() => setCurrPage(posts)}
         >
@@ -43,16 +44,25 @@ function App() {
         </p>
         <p className={
           currPage === resources
-            ? 'font-bold cursor-pointer hover:text-2xl transition-all duration-500'
-            : 'cursor-pointer hover:text-2xl transition-all duration-500'
+            ? 'font-bold cursor-pointer hover:scale-110 transition-all duration-500'
+            : 'cursor-pointer hover:scale-110 transition-all duration-500'
         }
           onClick={() => setCurrPage(resources)}
         >
           Resources
         </p>
+        <p className={
+          currPage === socials
+            ? 'font-bold cursor-pointer hover:scale-110 transition-all duration-500'
+            : 'cursor-pointer hover:scale-110 transition-all duration-500'
+        }
+          onClick={() => setCurrPage(socials)}
+        >
+          Socials
+        </p>
       </div>
-      <div id='content' className='p-5 text-left col-span-2'>
-        <div id='about-me-content' className={currPage === aboutMe ? 'block' : 'hidden'}>
+      <div id='content' className='ml-[200px] p-5 text-left transition-all ease-in-out overflow-x-auto overflow-y-hidden'>
+        <div id='about-me-content' className={currPage === aboutMe ? 'block animate-fade-up' : 'hidden animate-fade-down'}>
           <p>Giselle here :)</p>
           <p>Indonesian</p>
           <p>Second year CS @ UNSW</p>
@@ -61,9 +71,77 @@ function App() {
           <p>I also love books, mostly fantasy</p>
         </div>
 
-        <div id='projects-content' className=''></div>
-        <div id='posts-content'></div>
-        <div id='resources-content'></div>
+        <div id='hide-scrollbar' className={
+          currPage === projects
+            ? 'block animate-fade-up snap-x snap-mandatory flex flex-row gap-3 overflow-x-auto'
+            : 'hidden animate-fade-down'
+        }>
+          <div className='snap-center min-w-52 min-h-32 border border-[#2F195F] p-2 rounded-lg'>
+            <a className='font-bold' href='https://github.com/devsoc-unsw/trainee-saturn-24t1' target='_blank'>AchieveMint</a>
+            <p className='text-xxs mb-1'>Mar 2024 - present</p>
+            <div id='tags' className='flex gap-1'>
+              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>productivity</p>
+              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>react js</p>
+              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>javascript</p>
+              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>tailwind</p>
+            </div>
+            <p className='text-xxs mt-2'>Keeping up with deadlines and juggling a million tasks in different apps is a nightmare.
+              So, for our uni project, we’ve decided to build a fun and friendly web app that helps you keep track of
+              everything you need to do and all the goals you want to smash. Introducing your new best friend: the ultimate progress tracker - AchieveMint! 🎉📅
+            </p>
+          </div>
+          <div className='snap-center min-w-52 min-h-32 border border-[#2F195F] p-2 rounded-lg'>
+            <a className='font-bold' href='https://github.com/michimochi25/calc-bot' target='_blank'>calc-bot</a>
+            <p className='text-xxs mb-1'>Aug 2024</p>
+            <div id='tags' className='flex gap-1'>
+              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>discord</p>
+              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>for fun</p>
+              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>javascript</p>
+            </div>
+            <p className='text-xxs mt-2'>
+              Calculator bot on discord. Only works locally.
+            </p>
+          </div>
+          <div className='snap-center min-w-52 min-h-32 border border-[#2F195F] p-2 rounded-lg'>
+            <a className='font-bold' href='https://github.com/michimochi25/Terrible-Ideas-Hackathon' target='_blank'>ResuManiac</a>
+            <p className='text-xxs mb-1'>Aug 2024</p>
+            <div id='tags' className='flex gap-1'>
+              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>for fun</p>
+              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>hackathon</p>
+              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>react js</p>
+              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>javascript</p>
+              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>python</p>
+            </div>
+            <p className='text-xxs mt-2'>
+              Welcome to ResuManiac, the ultimate resume generator where chaos meets creativity! 🤩
+              This delightfully deranged project takes any image—be it human, plant, or inanimate object—and spins it
+              into a hilariously unhinged CV. Imagine your houseplant as a "Senior Software Engineer"💻  or your
+              pet rock as the "Chief Executive Officer of Microsoft" 🕵️
+              On top of that, your object also has a SUPERHERO alter ego on the side🤫
+            </p>
+          </div>
+          <div className='snap-center min-w-52 min-h-32 border border-[#2F195F] p-2 rounded-lg'>
+            <a className='font-bold' href='https://github.com/michimochi25/Kanji-Flashcard' target='_blank'>Kanji Flashcard</a>
+            <p className='text-xxs mb-1'>Mar 2024</p>
+            <div id='tags' className='flex gap-1'>
+              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>for fun</p>
+              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>uni course</p>
+              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>react js</p>
+              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>typescript</p>
+            </div>
+            <p className='text-xxs mt-2'>
+              A simple flashcard program to help you memorize W1-W7 ARTS3630 kanji.
+            </p>
+          </div>
+        </div>
+
+        <div id='posts-content' className={currPage === posts ? 'block animate-fade-up' : 'hidden animate-fade-down'}>
+
+        </div>
+
+        <div id='resources-content' className={currPage === resources ? 'block animate-fade-up' : 'hidden animate-fade-down'}>
+
+        </div>
       </div>
     </div>
   )
