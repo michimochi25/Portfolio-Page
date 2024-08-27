@@ -10,6 +10,7 @@ function App() {
   const posts = 2;
   const resources = 3;
   const socials = 4;
+  const quote = 5;
 
   const [currPage, setCurrPage] = useState(() => {
     const saved = localStorage.getItem('currPage');
@@ -25,6 +26,24 @@ function App() {
     localStorage.setItem('currPage', JSON.stringify(currPage));
     localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
   }, [currPage, isDarkMode]);
+
+  const [fact, setFact] = useState(null);
+
+  useEffect(() => {
+    fetch('https://uselessfacts.jsph.pl/api/v2/facts/random') // Replace with the actual API URL
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json(); // Parse the JSON from the response
+      })
+      .then(data => {
+        setFact(data.text)
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
+  }, []);
 
   return (
     <div className='bg-[#FAA6FF] flex flex-row w-screen h-screen justify-center p-5
@@ -75,6 +94,15 @@ function App() {
         >
           Socials
         </p>
+        <p className={
+          currPage === quote
+            ? 'font-bold cursor-pointer transition-all duration-500'
+            : 'cursor-pointer hover:scale-110 transition-all duration-500'
+        }
+          onClick={() => setCurrPage(quote)}
+        >
+          Click me!
+        </p>
         <div className='cursor-pointer bottom-2 absolute' onClick={() => setDarkMode(!isDarkMode)}>
           {isDarkMode && <DarkModeRoundedIcon fontSize="small" />}
           {!isDarkMode && <LightModeRoundedIcon fontSize="small" />}
@@ -83,7 +111,6 @@ function App() {
       <div id='content' className='ml-[200px] p-5 text-left transition-all ease-in-out overflow-x-auto overflow-y-hidden'>
         <div id='about-me-content' className={currPage === aboutMe ? 'block animate-fade-up' : 'hidden animate-fade-down'}>
           <p>Giselle here :)</p>
-          <p>Indonesian</p>
           <p>Second year CS @ UNSW</p>
           <p>Interested in focusing on frontend, but idk that might change</p>
           <p>I love movies, kdrama, TV series, or anime (stalk my letterboxd pls)</p>
@@ -154,12 +181,21 @@ function App() {
           </div>
         </div>
 
-        <div id='posts-content' className={currPage === posts ? 'block animate-fade-up' : 'hidden animate-fade-down'}>
+        <div id='posts-content' className={currPage === posts ? 'block animate-fade-up' : 'hidden'}>
+          wanna do some cool backend stuff here!
+        </div>
+
+        <div id='resources-content' className={currPage === resources ? 'block animate-fade-up' : 'hidden'}>
 
         </div>
 
-        <div id='resources-content' className={currPage === resources ? 'block animate-fade-up' : 'hidden animate-fade-down'}>
+        <div id='socials-content' className={currPage === socials ? 'block animate-fade-up' : 'hidden'}>
 
+        </div>
+
+        <div id='resources-content' className={currPage === quote ? 'flex flex-col block animate-fade-up text-center' : 'hidden'}>
+          {fact}
+          <p className='text-xxs'>just some random useless fact :) refresh to get another one</p>
         </div>
       </div>
     </div>
