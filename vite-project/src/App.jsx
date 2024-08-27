@@ -17,7 +17,7 @@ function App() {
       <div id='menu' className='absolute left-0 h-full p-5 text-right bg-[#2F195F] text-[#EFC3F5] min-w-32'>
         <p className={
           currPage === aboutMe
-            ? 'font-bold cursor-pointer hover:scale-110 transition-all duration-500'
+            ? 'font-bold cursor-pointer transition-all duration-500'
             : 'cursor-pointer hover:scale-110 transition-all duration-500'
         }
           onClick={() => setCurrPage(aboutMe)}
@@ -26,7 +26,7 @@ function App() {
         </p>
         <p className={
           currPage === projects
-            ? 'font-bold cursor-pointer hover:scale-110 transition-all duration-500'
+            ? 'font-bold cursor-pointer transition-all duration-500'
             : 'cursor-pointer hover:scale-110 transition-all duration-500'
         }
           onClick={() => setCurrPage(projects)}
@@ -35,7 +35,7 @@ function App() {
         </p>
         <p className={
           currPage === posts
-            ? 'font-bold cursor-pointer hover:scale-110 transition-all duration-500'
+            ? 'font-bold cursor-pointer transition-all duration-500'
             : 'cursor-pointer hover:scale-110 transition-all duration-500'
         }
           onClick={() => setCurrPage(posts)}
@@ -44,7 +44,7 @@ function App() {
         </p>
         <p className={
           currPage === resources
-            ? 'font-bold cursor-pointer hover:scale-110 transition-all duration-500'
+            ? 'font-bold cursor-pointer transition-all duration-500'
             : 'cursor-pointer hover:scale-110 transition-all duration-500'
         }
           onClick={() => setCurrPage(resources)}
@@ -53,7 +53,7 @@ function App() {
         </p>
         <p className={
           currPage === socials
-            ? 'font-bold cursor-pointer hover:scale-110 transition-all duration-500'
+            ? 'font-bold cursor-pointer transition-all duration-500'
             : 'cursor-pointer hover:scale-110 transition-all duration-500'
         }
           onClick={() => setCurrPage(socials)}
