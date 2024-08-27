@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
@@ -9,7 +9,14 @@ function App() {
   const resources = 3;
   const socials = 4;
 
-  const [currPage, setCurrPage] = useState(aboutMe);
+  const [currPage, setCurrPage] = useState(() => {
+    const saved = localStorage.getItem('currPage');
+    return saved !== null ? JSON.parse(saved) : aboutMe;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('currPage', JSON.stringify(currPage));
+  }, [currPage]);
 
   return (
     <div className='bg-[#FAA6FF] flex flex-row w-screen h-screen justify-center p-5
