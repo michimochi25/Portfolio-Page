@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.css';
+import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
+import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 
 function App() {
   // enums
@@ -14,9 +16,15 @@ function App() {
     return saved !== null ? JSON.parse(saved) : aboutMe;
   });
 
+  const [isDarkMode, setDarkMode] = useState(() => {
+    const savedMode = localStorage.getItem('mode');
+    return savedMode !== null ? JSON.parse(savedMode) : false;
+  });
+
   useEffect(() => {
     localStorage.setItem('currPage', JSON.stringify(currPage));
-  }, [currPage]);
+    localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
+  }, [currPage, isDarkMode]);
 
   return (
     <div className='bg-[#FAA6FF] flex flex-row w-screen h-screen justify-center p-5
@@ -67,6 +75,10 @@ function App() {
         >
           Socials
         </p>
+        <div className='cursor-pointer bottom-2 absolute' onClick={() => setDarkMode(!isDarkMode)}>
+          {isDarkMode && <DarkModeRoundedIcon fontSize="small" />}
+          {!isDarkMode && <LightModeRoundedIcon fontSize="small" />}
+        </div>
       </div>
       <div id='content' className='ml-[200px] p-5 text-left transition-all ease-in-out overflow-x-auto overflow-y-hidden'>
         <div id='about-me-content' className={currPage === aboutMe ? 'block animate-fade-up' : 'hidden animate-fade-down'}>
