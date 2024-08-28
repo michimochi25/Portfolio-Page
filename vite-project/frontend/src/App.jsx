@@ -181,8 +181,11 @@ function App() {
           </div>
         </div>
 
-        <div id='posts-content' className={currPage === posts ? 'block animate-fade-up' : 'hidden'}>
+        <div id='posts-content' className={currPage === posts ? 'flex flex-col block animate-fade-up text-[20px]' : 'hidden'}>
           wanna do some cool backend stuff here!
+          <input className='p-1 rounded-lg mb-1' placeholder='Title' />
+          <textarea className='p-1 mb-1 rounded-lg' placeholder='Content' />
+          <input className='p-1 mb-1 rounded-lg' placeholder='Password' />
         </div>
 
         <div id='resources-content' className={currPage === resources ? 'block animate-fade-up' : 'hidden'}>
@@ -198,7 +201,7 @@ function App() {
           <p className='text-xxs'>just some random useless fact :) refresh to get another one</p>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 
