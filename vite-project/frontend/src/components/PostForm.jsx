@@ -4,21 +4,16 @@ import { createPost } from '../api.js';
 import Button from '@mui/material/Button';
 
 function PostForm() {
-  // Step 1: Create state variables for each input field
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [password, setPassword] = useState('');
 
-  // Step 2: Handle input changes
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleContentChange = (e) => setContent(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
 
-  // Optional: Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    const postData = { title, content, password };
-    console.log(postData);
     createPost({ title: title, content: content, password: password });
   };
 
@@ -45,7 +40,6 @@ function PostForm() {
       <Button type='submit' color='inherit'>
         <AddCircleRoundedIcon />
       </Button>
-
     </form>
   );
 }

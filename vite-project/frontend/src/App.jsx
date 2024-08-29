@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
-import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGithub, faDiscord, faLinkedin, faSquareLetterboxd } from "@fortawesome/free-brands-svg-icons";
 import PostList from './components/PostList';
 import PostForm from './components/PostForm';
 
@@ -126,6 +127,19 @@ function App() {
             : 'hidden animate-fade-down'
         }>
           <div className='snap-center min-w-52 min-h-32 border border-[#2F195F] p-2 rounded-lg'>
+            <a className='font-bold' href='https://github.com/michimochi25/Portfolio-Page' target='_blank'>Portfolio Page</a>
+            <p className='text-xxs mb-1'>Aug 2024 - present</p>
+            <div id='tags' className='flex gap-1'>
+              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>personal</p>
+              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>react js</p>
+              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>javascript</p>
+              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>tailwind</p>
+            </div>
+            <p className='text-xxs mt-2'>
+              The page you're at right now!
+            </p>
+          </div>
+          <div className='snap-center min-w-52 min-h-32 border border-[#2F195F] p-2 rounded-lg'>
             <a className='font-bold' href='https://github.com/devsoc-unsw/trainee-saturn-24t1' target='_blank'>AchieveMint</a>
             <p className='text-xxs mb-1'>Mar 2024 - present</p>
             <div id='tags' className='flex gap-1'>
@@ -196,12 +210,33 @@ function App() {
           </div>
         </div>
 
-        <div id='resources-content' className={currPage === resources ? 'block animate-fade-up' : 'hidden'}>
-
+        <div id='resources-content' className={currPage === resources ? 'flex flex-col animate-fade-up' : 'hidden'}>
+          <p>Initially made this for myself, pardon the mess</p>
+          <p>Wrote these based on info gathered from various resources I can't mention one by one!</p>
+          <a href='https://unsw-my.sharepoint.com/:o:/g/personal/z5491414_ad_unsw_edu_au/EvIHeSlG0ZJJvkPIJ4Jwoi8Bl5J7he2JE6DEdGpvWlogQQ?e=HOro6E'
+            target='_blank' className='underline'>MATH1131</a>
+          <a href='https://1drv.ms/o/c/e7b96cc07c61b4f0/EvC0YXzAbLkggOcECgAAAAABU16c1hRWWCkxaloTaz1h2w?e=yqyqfZ'
+            target='_blank' className='underline'>MATH1081</a>
+          <a href='https://1drv.ms/o/c/e7b96cc07c61b4f0/EqFwoP8ic9BCh9viipNGPp4B8LJHuJTudfgwAyzuzFhDbA?e=psGOyh'
+            target='_blank' className='underline'> MATH1231</a>
         </div>
 
-        <div id='socials-content' className={currPage === socials ? 'block animate-fade-up' : 'hidden'}>
-
+        <div id='socials-content' className={currPage === socials ? 'flex flex-col justify-center animate-fade-up' : 'hidden'}>
+          <p className='mb-2 text-center'>Where to contact me?</p>
+          <div className='flex flex-row'>
+            <a href='https://github.com/michimochi25/' target='_blank'>
+              <FontAwesomeIcon icon={faGithub} className='fa-2x mx-2 cursor-pointer hover:scale-125 transition-all duration-500' />
+            </a>
+            <a href='https://discord.com/users/756864643691184169' target='_blank'>
+              <FontAwesomeIcon icon={faDiscord} className='fa-2x mx-2 cursor-pointer hover:scale-125 transition-all duration-500' />
+            </a>
+            <a href='https://www.linkedin.com/in/giselle-angela-hanjaya-putri-566369297/' target='_blank'>
+              <FontAwesomeIcon icon={faLinkedin} className='fa-2x mx-2 cursor-pointer hover:scale-125 transition-all duration-500' />
+            </a>
+            <a href='https://letterboxd.com/JalanKotak/' target='_blank'>
+              <FontAwesomeIcon icon={faSquareLetterboxd} className='fa-2x mx-2 cursor-pointer hover:scale-125 transition-all duration-500' />
+            </a>
+          </div>
         </div>
 
         <div id='resources-content' className={currPage === quote ? 'flex flex-col block animate-fade-up text-center' : 'hidden'}>
