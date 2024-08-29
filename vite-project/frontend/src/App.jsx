@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
+import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
+import PostList from './components/PostList';
+import PostForm from './components/PostForm';
 
 function App() {
   // enums
@@ -108,7 +111,7 @@ function App() {
           {!isDarkMode && <LightModeRoundedIcon fontSize="small" />}
         </div>
       </div>
-      <div id='content' className='ml-[200px] p-5 text-left transition-all ease-in-out overflow-x-auto overflow-y-hidden'>
+      <div id='content' className='ml-[250px] p-5 text-left transition-all ease-in-out overflow-x-auto overflow-y-hidden'>
         <div id='about-me-content' className={currPage === aboutMe ? 'block animate-fade-up' : 'hidden animate-fade-down'}>
           <p>Giselle here :)</p>
           <p>Second year CS @ UNSW</p>
@@ -181,11 +184,16 @@ function App() {
           </div>
         </div>
 
-        <div id='posts-content' className={currPage === posts ? 'flex flex-col block animate-fade-up text-[20px]' : 'hidden'}>
-          wanna do some cool backend stuff here!
-          <input className='p-1 rounded-lg mb-1' placeholder='Title' />
-          <textarea className='p-1 mb-1 rounded-lg' placeholder='Content' />
-          <input className='p-1 mb-1 rounded-lg' placeholder='Password' />
+        <div id='posts-content' className={currPage === posts ? 'animate-fade-up' : 'hidden'}>
+          Only I can make a post, unless you can crack the password ;)
+          <div className='flex flex-row justify-center justify-items-center place-items-center'>
+            <div id='submit-post' className='flex flex-col w-32'>
+              <PostForm />
+            </div>
+            <div id='all-posts overflow-y-auto'>
+              <PostList />
+            </div>
+          </div>
         </div>
 
         <div id='resources-content' className={currPage === resources ? 'block animate-fade-up' : 'hidden'}>
