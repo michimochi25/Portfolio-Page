@@ -123,7 +123,7 @@ function App() {
       <div className='block sm:hidden absolute top-0'>
         <TopDrawer currPage={currPage} setCurrPage={setCurrPage} isDarkMode={isDarkMode} setDarkMode={setDarkMode} />
       </div>
-      <div id='hide-scrollbar' className='sm:ml-[250px] mt-10 p-5 text-left transition-all ease-in-out overflow-x-auto overflow-y-auto sm:overflow-y-hidden'>
+      <div id='hide-scrollbar' className='sm:ml-[250px] mt-10 sm:mt-0 p-5 text-left transition-all ease-in-out overflow-x-auto overflow-y-auto sm:overflow-y-hidden'>
         <div id='about-me-content' className={currPage === aboutMe ? 'block animate-fade-up' : 'hidden animate-fade-down'}>
           <p>Giselle here :)</p>
           <p>Second year CS @ UNSW</p>
