@@ -1,4 +1,4 @@
-import { addPost, getPosts, likePost } from '../posts.js';
+import { addPost, getPosts, likePost } from './posts.js';
 import express from 'express';
 import cors from 'cors';
 
