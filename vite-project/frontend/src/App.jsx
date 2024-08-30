@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import ModeSwitch from './components/ModeSwitch';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGithub, faDiscord, faLinkedin, faSquareLetterboxd } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faDiscord, faLinkedin, faSquareLetterboxd } from '@fortawesome/free-brands-svg-icons';
 import PostList from './components/PostList';
 import PostForm from './components/PostForm';
 import TopDrawer from './components/Drawer';
