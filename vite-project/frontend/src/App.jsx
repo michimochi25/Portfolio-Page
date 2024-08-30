@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
-import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
+import ModeSwitch from './components/ModeSwitch';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faDiscord, faLinkedin, faSquareLetterboxd } from "@fortawesome/free-brands-svg-icons";
 import PostList from './components/PostList';
 import PostForm from './components/PostForm';
+import TopDrawer from './components/Drawer';
 
 function App() {
   // enums
@@ -22,7 +22,7 @@ function App() {
   });
 
   const [isDarkMode, setDarkMode] = useState(() => {
-    const savedMode = localStorage.getItem('mode');
+    const savedMode = localStorage.getItem('isDarkMode');
     return savedMode !== null ? JSON.parse(savedMode) : false;
   });
 
@@ -50,9 +50,18 @@ function App() {
   }, []);
 
   return (
-    <div className='bg-[#FAA6FF] flex flex-row w-screen h-screen justify-center p-5
-      content-center items-center'>
-      <div id='menu' className='absolute left-0 h-full p-5 text-right bg-[#2F195F] text-[#EFC3F5] min-w-32'>
+    <div className={
+      isDarkMode
+        ? 'bg-[#2F195F] flex flex-col sm:flex-row w-screen h-screen justify-center p-5 content-center items-center text-[#EFC3F5]'
+        : 'bg-[#FAA6FF] flex flex-col sm:flex-row w-screen h-screen justify-center p-5 content-center items-center'
+    }
+    >
+      <div id='menu' className={
+        isDarkMode
+          ? 'hidden sm:block absolute left-0 h-full p-5 text-right bg-[#0F1020] text-[#EFC3F5] min-w-32'
+          : 'hidden sm:block absolute left-0 h-full p-5 text-right bg-[#2F195F] text-[#EFC3F5] min-w-32'
+      }
+      >
         <p className={
           currPage === aboutMe
             ? 'font-bold cursor-pointer transition-all duration-500'
@@ -107,12 +116,14 @@ function App() {
         >
           Click me!
         </p>
-        <div className='cursor-pointer bottom-2 absolute' onClick={() => setDarkMode(!isDarkMode)}>
-          {isDarkMode && <DarkModeRoundedIcon fontSize="small" />}
-          {!isDarkMode && <LightModeRoundedIcon fontSize="small" />}
+        <div className='bottom-2 absolute'>
+          <ModeSwitch isDarkMode={isDarkMode} setDarkMode={setDarkMode} />
         </div>
       </div>
-      <div id='content' className='ml-[250px] p-5 text-left transition-all ease-in-out overflow-x-auto overflow-y-hidden'>
+      <div className='block sm:hidden absolute top-0'>
+        <TopDrawer currPage={currPage} setCurrPage={setCurrPage} isDarkMode={isDarkMode} setDarkMode={setDarkMode} />
+      </div>
+      <div id='hide-scrollbar' className='sm:ml-[250px] mt-10 p-5 text-left transition-all ease-in-out overflow-x-auto overflow-y-auto sm:overflow-y-hidden'>
         <div id='about-me-content' className={currPage === aboutMe ? 'block animate-fade-up' : 'hidden animate-fade-down'}>
           <p>Giselle here :)</p>
           <p>Second year CS @ UNSW</p>
@@ -123,57 +134,139 @@ function App() {
 
         <div id='hide-scrollbar' className={
           currPage === projects
-            ? 'block animate-fade-up snap-x snap-mandatory flex flex-row gap-3 overflow-x-auto'
-            : 'hidden animate-fade-down'
+            ? 'block animate-fade-up snap-x snap-mandatory flex sm:flex-row flex-col gap-3 sm:overflow-x-auto overflow-y-auto'
+            : 'hidden'
         }>
-          <div className='snap-center min-w-52 min-h-32 border border-[#2F195F] p-2 rounded-lg'>
+          <div className={
+            isDarkMode
+              ? 'snap-center min-w-52 max-w-screen min-h-32 border border-white p-2 rounded-lg'
+              : 'snap-center min-w-52 max-w-screen min-h-32 border border-[#2F195F] p-2 rounded-lg'
+          }
+          >
             <a className='font-bold' href='https://github.com/michimochi25/Portfolio-Page' target='_blank'>Portfolio Page</a>
             <p className='text-xxs mb-1'>Aug 2024 - present</p>
             <div id='tags' className='flex gap-1'>
-              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>personal</p>
-              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>react js</p>
-              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>javascript</p>
-              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>tailwind</p>
+              <p id='tag' className={
+                isDarkMode
+                  ? 'text-xxs bg-[#0F1020] rounded-lg text-white p-1 text-center w-fit'
+                  : 'text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'
+              }
+              >personal</p>
+              <p id='tag' className={
+                isDarkMode
+                  ? 'text-xxs bg-[#0F1020] rounded-lg text-white p-1 text-center w-fit'
+                  : 'text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'
+              }>react js</p>
+              <p id='tag' className={
+                isDarkMode
+                  ? 'text-xxs bg-[#0F1020] rounded-lg text-white p-1 text-center w-fit'
+                  : 'text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'
+              }>javascript</p>
+              <p id='tag' className={
+                isDarkMode
+                  ? 'text-xxs bg-[#0F1020] rounded-lg text-white p-1 text-center w-fit'
+                  : 'text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'
+              }>tailwind</p>
             </div>
             <p className='text-xxs mt-2'>
               The page you're at right now!
             </p>
           </div>
-          <div className='snap-center min-w-52 min-h-32 border border-[#2F195F] p-2 rounded-lg'>
+          <div className={
+            isDarkMode
+              ? 'snap-center min-w-52 max-w-screen min-h-32 border border-white p-2 rounded-lg'
+              : 'snap-center min-w-52 max-w-screen min-h-32 border border-[#2F195F] p-2 rounded-lg'
+          }>
             <a className='font-bold' href='https://github.com/devsoc-unsw/trainee-saturn-24t1' target='_blank'>AchieveMint</a>
             <p className='text-xxs mb-1'>Mar 2024 - present</p>
             <div id='tags' className='flex gap-1'>
-              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>productivity</p>
-              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>react js</p>
-              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>javascript</p>
-              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>tailwind</p>
+              <p id='tag' className={
+                isDarkMode
+                  ? 'text-xxs bg-[#0F1020] rounded-lg text-white p-1 text-center w-fit'
+                  : 'text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'
+              }>productivity</p>
+              <p id='tag' className={
+                isDarkMode
+                  ? 'text-xxs bg-[#0F1020] rounded-lg text-white p-1 text-center w-fit'
+                  : 'text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'
+              }>react js</p>
+              <p id='tag' className={
+                isDarkMode
+                  ? 'text-xxs bg-[#0F1020] rounded-lg text-white p-1 text-center w-fit'
+                  : 'text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'
+              }>javascript</p>
+              <p id='tag' className={
+                isDarkMode
+                  ? 'text-xxs bg-[#0F1020] rounded-lg text-white p-1 text-center w-fit'
+                  : 'text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'
+              }>tailwind</p>
             </div>
             <p className='text-xxs mt-2'>Keeping up with deadlines and juggling a million tasks in different apps is a nightmare.
               So, for our uni project, we’ve decided to build a fun and friendly web app that helps you keep track of
               everything you need to do and all the goals you want to smash. Introducing your new best friend: the ultimate progress tracker - AchieveMint! 🎉📅
             </p>
           </div>
-          <div className='snap-center min-w-52 min-h-32 border border-[#2F195F] p-2 rounded-lg'>
+          <div className={
+            isDarkMode
+              ? 'snap-center min-w-52 max-w-screen min-h-32 border border-white p-2 rounded-lg'
+              : 'snap-center min-w-52 max-w-screen min-h-32 border border-[#2F195F] p-2 rounded-lg'
+          }>
             <a className='font-bold' href='https://github.com/michimochi25/calc-bot' target='_blank'>calc-bot</a>
             <p className='text-xxs mb-1'>Aug 2024</p>
             <div id='tags' className='flex gap-1'>
-              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>discord</p>
-              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>for fun</p>
-              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>javascript</p>
+              <p id='tag' className={
+                isDarkMode
+                  ? 'text-xxs bg-[#0F1020] rounded-lg text-white p-1 text-center w-fit'
+                  : 'text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'
+              }>discord</p>
+              <p id='tag' className={
+                isDarkMode
+                  ? 'text-xxs bg-[#0F1020] rounded-lg text-white p-1 text-center w-fit'
+                  : 'text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'
+              }>for fun</p>
+              <p id='tag' className={
+                isDarkMode
+                  ? 'text-xxs bg-[#0F1020] rounded-lg text-white p-1 text-center w-fit'
+                  : 'text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'
+              }>javascript</p>
             </div>
             <p className='text-xxs mt-2'>
               Calculator bot on discord. Only works locally.
             </p>
           </div>
-          <div className='snap-center min-w-52 min-h-32 border border-[#2F195F] p-2 rounded-lg'>
+          <div className={
+            isDarkMode
+              ? 'snap-center min-w-52 max-w-screen min-h-32 border border-white p-2 rounded-lg'
+              : 'snap-center min-w-52 max-w-screen min-h-32 border border-[#2F195F] p-2 rounded-lg'
+          }>
             <a className='font-bold' href='https://github.com/michimochi25/Terrible-Ideas-Hackathon' target='_blank'>ResuManiac</a>
             <p className='text-xxs mb-1'>Aug 2024</p>
             <div id='tags' className='flex gap-1'>
-              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>for fun</p>
-              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>hackathon</p>
-              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>react js</p>
-              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>javascript</p>
-              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>python</p>
+              <p id='tag' className={
+                isDarkMode
+                  ? 'text-xxs bg-[#0F1020] rounded-lg text-white p-1 text-center w-fit'
+                  : 'text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'
+              }>for fun</p>
+              <p id='tag' className={
+                isDarkMode
+                  ? 'text-xxs bg-[#0F1020] rounded-lg text-white p-1 text-center w-fit'
+                  : 'text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'
+              }>hackathon</p>
+              <p id='tag' className={
+                isDarkMode
+                  ? 'text-xxs bg-[#0F1020] rounded-lg text-white p-1 text-center w-fit'
+                  : 'text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'
+              }>react js</p>
+              <p id='tag' className={
+                isDarkMode
+                  ? 'text-xxs bg-[#0F1020] rounded-lg text-white p-1 text-center w-fit'
+                  : 'text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'
+              }>javascript</p>
+              <p id='tag' className={
+                isDarkMode
+                  ? 'text-xxs bg-[#0F1020] rounded-lg text-white p-1 text-center w-fit'
+                  : 'text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'
+              }>python</p>
             </div>
             <p className='text-xxs mt-2'>
               Welcome to ResuManiac, the ultimate resume generator where chaos meets creativity! 🤩
@@ -183,14 +276,34 @@ function App() {
               On top of that, your object also has a SUPERHERO alter ego on the side🤫
             </p>
           </div>
-          <div className='snap-center min-w-52 min-h-32 border border-[#2F195F] p-2 rounded-lg'>
+          <div className={
+            isDarkMode
+              ? 'snap-center min-w-52 max-w-screen min-h-32 border border-white p-2 rounded-lg'
+              : 'snap-center min-w-52 max-w-screen min-h-32 border border-[#2F195F] p-2 rounded-lg'
+          }>
             <a className='font-bold' href='https://github.com/michimochi25/Kanji-Flashcard' target='_blank'>Kanji Flashcard</a>
             <p className='text-xxs mb-1'>Mar 2024</p>
             <div id='tags' className='flex gap-1'>
-              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>for fun</p>
-              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>uni course</p>
-              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>react js</p>
-              <p id='tag' className='text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'>typescript</p>
+              <p id='tag' className={
+                isDarkMode
+                  ? 'text-xxs bg-[#0F1020] rounded-lg text-white p-1 text-center w-fit'
+                  : 'text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'
+              }>for fun</p>
+              <p id='tag' className={
+                isDarkMode
+                  ? 'text-xxs bg-[#0F1020] rounded-lg text-white p-1 text-center w-fit'
+                  : 'text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'
+              }>uni course</p>
+              <p id='tag' className={
+                isDarkMode
+                  ? 'text-xxs bg-[#0F1020] rounded-lg text-white p-1 text-center w-fit'
+                  : 'text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'
+              }>react js</p>
+              <p id='tag' className={
+                isDarkMode
+                  ? 'text-xxs bg-[#0F1020] rounded-lg text-white p-1 text-center w-fit'
+                  : 'text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'
+              }>typescript</p>
             </div>
             <p className='text-xxs mt-2'>
               A simple flashcard program to help you memorize W1-W7 ARTS3630 kanji.
@@ -200,12 +313,12 @@ function App() {
 
         <div id='posts-content' className={currPage === posts ? 'animate-fade-up' : 'hidden'}>
           Only I can make a post, unless you can crack the password ;)
-          <div className='flex flex-row justify-center justify-items-center place-items-center'>
-            <div id='submit-post' className='flex flex-col w-32'>
+          <div className='flex min-[1037px]:flex-row flex-col mt-2 justify-center justify-items-center place-items-center'>
+            <div id='submit-post' className='flex flex-col'>
               <PostForm />
             </div>
             <div id='all-posts overflow-y-auto'>
-              <PostList />
+              <PostList isDarkMode={isDarkMode} />
             </div>
           </div>
         </div>

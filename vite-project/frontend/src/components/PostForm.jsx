@@ -3,7 +3,7 @@ import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import { createPost } from '../api.js';
 import Button from '@mui/material/Button';
 
-function PostForm() {
+function PostForm({ isDarkMode }) {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [password, setPassword] = useState('');

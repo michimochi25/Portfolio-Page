@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { getPosts, likePost } from '../api.js';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 
-function PostList() {
+function PostList({ isDarkMode }) {
   const [posts, setPosts] = useState([]);
   const [like, setLike] = useState(false);
   useEffect(() => {
@@ -35,17 +35,21 @@ function PostList() {
   }
 
   return (
-    <div id='hide-scrollbar' className='m-2 flex flex-col overflow-y-auto h-[300px] rounded-lg'>
+    <div id='hide-scrollbar' className='m-2 flex flex-col overflow-y-auto h-[300px] rounded-lg justify-items-center'>
       {posts.length === 0
         ? <div></div>
         : posts.toReversed().map(post => (
-          <div key={post.id} className='text-[15px] m-1 p-2 bg-white rounded-lg w-60'>
+          <div key={post.id} className={
+            isDarkMode
+              ? 'text-[15px] m-1 p-2 bg-[#0F1020] rounded-lg justify-center'
+              : 'text-[15px] m-1 p-2 bg-white rounded-lg justify-center'
+          }>
             <h1>{post.title}</h1>
             <p>{convertDate(post.timestamp)}</p>
             <p>{post.content}</p>
             <p>
               <button onClick={() => handleLike(post.id)}>
-                <ThumbUpIcon fontSize='small' />
+                <ThumbUpIcon fontSize='small' className='' />
               </button>
               <span> </span>
               {post.likes} Likes
