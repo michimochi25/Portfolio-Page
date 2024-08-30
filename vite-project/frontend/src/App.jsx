@@ -176,6 +176,31 @@ function App() {
             isDarkMode
               ? 'snap-center min-w-52 max-w-screen min-h-32 border border-white p-2 rounded-lg'
               : 'snap-center min-w-52 max-w-screen min-h-32 border border-[#2F195F] p-2 rounded-lg'
+          }
+          >
+            <a className='font-bold' href='https://github.com/michimochi25/Letterboxd-Scraper' target='_blank'>Letterboxd-Scraper</a>
+            <p className='text-xxs mb-1'>Aug 2024</p>
+            <div id='tags' className='flex gap-1'>
+              <p id='tag' className={
+                isDarkMode
+                  ? 'text-xxs bg-[#0F1020] rounded-lg text-white p-1 text-center w-fit'
+                  : 'text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'
+              }
+              >for fun</p>
+              <p id='tag' className={
+                isDarkMode
+                  ? 'text-xxs bg-[#0F1020] rounded-lg text-white p-1 text-center w-fit'
+                  : 'text-xxs bg-[#2F195F] rounded-lg text-white p-1 text-center w-fit'
+              }>python</p>
+            </div>
+            <p className='text-xxs mt-2'>
+              Web scraper for Letterboxd diary
+            </p>
+          </div>
+          <div className={
+            isDarkMode
+              ? 'snap-center min-w-52 max-w-screen min-h-32 border border-white p-2 rounded-lg'
+              : 'snap-center min-w-52 max-w-screen min-h-32 border border-[#2F195F] p-2 rounded-lg'
           }>
             <a className='font-bold' href='https://github.com/devsoc-unsw/trainee-saturn-24t1' target='_blank'>AchieveMint</a>
             <p className='text-xxs mb-1'>Mar 2024 - present</p>
@@ -311,9 +336,9 @@ function App() {
           </div>
         </div>
 
-        <div id='posts-content' className={currPage === posts ? 'animate-fade-up' : 'hidden'}>
+        <div id='hide-scrollbar' className={currPage === posts ? 'animate-fade-up h-56 overflow-auto' : 'hidden'}>
           Only I can make a post, unless you can crack the password ;)
-          <div className='flex min-[1037px]:flex-row flex-col mt-2 justify-center justify-items-center place-items-center'>
+          <div className='flex min-[1037px]:flex-row mt-1 flex-col justify-center justify-items-center place-items-center'>
             <div id='submit-post' className='flex flex-col'>
               <PostForm />
             </div>
