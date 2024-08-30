@@ -1,8 +1,5 @@
 {
   "type": "module",
-  "scripts": {
-    "start": "nodemon index.js"
-  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@fortawesome/free-brands-svg-icons": "^6.6.0",
